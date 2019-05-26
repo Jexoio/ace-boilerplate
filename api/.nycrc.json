@@ -1,0 +1,3 @@
+{
+  "exclude": ["src/graphql/subscriptions", "**/__tests__"]
+}

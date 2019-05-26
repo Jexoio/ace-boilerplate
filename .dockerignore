@@ -1,0 +1,4 @@
+**/node_modules
+pg-data
+.vscode
+.git

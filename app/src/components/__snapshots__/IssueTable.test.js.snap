@@ -1,0 +1,102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Issue /> matches the snapshot 1`] = `
+<div
+  className="sc-gzVnrw emaAvU"
+>
+  <div>
+    bar
+  </div>
+  <div>
+    baz
+  </div>
+  <div
+    className="summary"
+  >
+    <div
+      className="RootWrapper-sc-1va80k6-0 fsVJT"
+    >
+      <div
+        style={
+          Object {
+            "position": "absolute",
+          }
+        }
+      >
+        <label
+          className="Label__LabelWrapper-sc-17towfw-0 keOXhT"
+        >
+          <div
+            className="Label__LabelInner-sc-17towfw-1 jbyPaz"
+          >
+            <span
+              onClick={[Function]}
+            >
+              
+            </span>
+          </div>
+        </label>
+      </div>
+      <div
+        className="ContentWrapper-kdagst-0 fPLsyX"
+        onBlur={[Function]}
+        onFocus={[Function]}
+      >
+        <div
+          className="FieldBaseWrapper-sc-14kmybr-0 cspqsP"
+          onClick={[Function]}
+          onMouseDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        >
+          <div
+            className="Content__ContentWrapper-ve26fj-2 feWTNh"
+            disabled={false}
+          >
+            <div
+              className="Content__ChildWrapper-ve26fj-0 ilJUcG"
+            >
+              <div
+                className="Content-ve26fj-1 llCsQv"
+                disabled={false}
+                onBlurCapture={[Function]}
+                onFocusCapture={[Function]}
+                readOnly={false}
+              >
+                <div
+                  className="ReadViewContentWrapper-xymwx5-0 kLiHRY"
+                >
+                  <div
+                    className="Input__ReadView-sc-1b6ayio-0 bZECeW"
+                    style={Object {}}
+                  >
+                    foo
+                  </div>
+                  <button
+                    aria-label="Edit"
+                    className="EditButton-sc-1v6bv8a-0 doKTJP"
+                    type="button"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`<IssueTable /> matches the snapshot 1`] = `
+<div
+  className="sc-bZQynM iYOxHk"
+>
+  <h1>
+    My latest issues
+  </h1>
+  <div
+    className="body"
+  />
+</div>
+`;

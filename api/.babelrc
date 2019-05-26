@@ -1,0 +1,14 @@
+{
+  "presets": ["@babel/preset-env", "@babel/preset-flow"],
+  "plugins": [
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-object-rest-spread"
+  ],
+  "env": {
+    "debug": {
+      "sourceMaps": "inline",
+      "retainLines": true
+    }
+  },
+  "ignore": ["node_modules", "dist"]
+}

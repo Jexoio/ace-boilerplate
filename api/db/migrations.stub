@@ -1,0 +1,11 @@
+exports.up = (knex) => {
+    return knex.schema.createTable('table_name', (table) => {
+        table.timestamp('createdAt', { useTz: true });
+        table.timestamp('updatedAt', { useTz: true });
+        table.uuid('id').primary();
+    });
+};
+
+exports.down = (knex) => {
+    return knex.schema.dropTableIfExists('table_name');
+};

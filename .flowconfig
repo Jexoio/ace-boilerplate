@@ -1,0 +1,25 @@
+[ignore]
+.*/.*\.test\..*
+.*/templates/.*
+
+[untyped]
+.*/node_modules
+
+[include]
+
+[lints]
+
+
+[options]
+max_header_tokens=5
+module.file_ext=.js
+server.max_workers=2
+sharedmemory.hash_table_pow=21
+sharedmemory.dep_table_pow=19
+suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
+suppress_comment= \\(.\\|\n\\)*\\$FlowFixMe
+
+[strict]
+
+[version]
+0.93.0

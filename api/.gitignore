@@ -1,0 +1,10 @@
+*.iml
+*.idea
+.vscode
+.DS_Store
+node_modules
+*.pem
+credentials.json
+atlassian-connect.production.json
+dist
+.nyc_output

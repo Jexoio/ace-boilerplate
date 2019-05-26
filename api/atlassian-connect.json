@@ -1,0 +1,73 @@
+{
+  "key": "my-super-awesome-add-on",
+  "name": "My Super Awesome Add On",
+  "description": "My very first add-on",
+  "apiVersion": 1,
+  "vendor": {
+    "name": "Jexo",
+    "url": "https://jexo.io"
+  },
+  "baseUrl": "{{localBaseUrl}}",
+  "links": {
+    "self": "{{localBaseUrl}}/atlassian-connect.json",
+    "homepage": "{{localBaseUrl}}/atlassian-connect.json"
+  },
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed"
+  },
+  "scopes": ["READ", "WRITE", "ADMIN", "ACT_AS_USER"],
+  "modules": {
+    "generalPages": [
+      {
+        "key": "hello-world-page-jira",
+        "location": "system.top.navigation.bar",
+        "name": {
+          "value": "My Awesome Plugin"
+        },
+        "url": "/hello-world",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          }
+        ]
+      },
+      {
+        "key": "expired-page-jira",
+        "location": "system.top.navigation.bar",
+        "name": {
+          "value": "My Awesome Plugin Expired"
+        },
+        "url": "/expired",
+        "conditions": [
+          {
+            "condition": "user_is_logged_in"
+          },
+          {
+            "condition": "addon_is_licensed",
+            "invert": true
+          }
+        ]
+      }
+    ],
+    "webhooks": [
+      {
+        "event": "connect_addon_enabled",
+        "url": "/enabled"
+      },
+      {
+        "event": "connect_addon_disabled",
+        "url": "/disabled"
+      },
+      {
+        "event": "jira:issue_updated",
+        "url": "/issue-updated"
+      }
+    ]
+  },
+  "apiMigrations": {
+    "gdpr": true
+  }
+}

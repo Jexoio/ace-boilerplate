@@ -1,0 +1,11 @@
+docker-compose down
+
+cd app
+yarn
+cd ..
+
+cd api
+yarn
+cd ..
+
+docker-compose up --build

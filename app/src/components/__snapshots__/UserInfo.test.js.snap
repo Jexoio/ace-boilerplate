@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`matches the snapshot 1`] = `
+<div
+  className="sc-bdVaJa iqUsw"
+>
+  <h2
+    style={
+      Object {
+        "color": "#172B4D",
+      }
+    }
+  >
+    User info
+  </h2>
+  <table>
+    <tbody>
+      <tr>
+        <td>
+          id
+        </td>
+        <td>
+          foo
+        </td>
+      </tr>
+      <tr>
+        <td>
+          userAccountId
+        </td>
+        <td>
+          bar
+        </td>
+      </tr>
+      <tr>
+        <td>
+          clientKey
+        </td>
+        <td>
+          boo
+        </td>
+      </tr>
+      <tr>
+        <td>
+          updatedAt
+        </td>
+        <td />
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

@@ -1,0 +1,27 @@
+{
+  "development": {
+    "port": "$API_PORT",
+    "store": {
+      "adapter": "sequelize",
+      "dialect": "postgres",
+      "url": "$DATABASE_URL"
+    },
+    "maxTokenAge": "31536000"
+  },
+  "production": {
+    "port": "$API_PORT",
+    "store": {
+      "adapter": "sequelize",
+      "dialect": "postgres",
+      "url": "$DATABASE_URL"
+    },
+    "maxTokenAge": "31536000",
+    "whitelist": [
+      "*.jira-dev.com",
+      "*.atlassian.net",
+      "*.atlassian.com",
+      "*.jira.com"
+    ]
+  },
+  "product": "jira"
+}

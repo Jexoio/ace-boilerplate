@@ -1,0 +1,51 @@
+version: '2.4'
+services:
+  redis:
+    image: redis:5
+    ports:
+      - 6379
+  db:
+    image: postgres:10
+    ports:
+      - 5432
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
+  app:
+    build:
+      context: ./app
+    ports:
+      - '3001:3001'
+    volumes:
+      - ./app:/home/app:cached
+    entrypoint: ['yarn', 'start']
+  api:
+    depends_on:
+      - redis
+      - db
+    build:
+      context: ./api
+    environment:
+      NODE_ENV: development
+      PORT:
+      ENVIRONMENT:
+      REDIS_HOST:
+      REDIS_PORT:
+      DATABASE_URL:
+      DB_DIALECT:
+      AC_OPTS:
+      USE_GRAPHQL_MOCKS:
+    ports:
+      - '9229:9229'
+      - '4040:4040'
+    volumes:
+      - ./api:/home/api:cached
+    entrypoint: ['./entrypoint.sh']
+  nginx:
+    depends_on:
+      - api
+      - app
+    image: nginx:1.14
+    volumes:
+      - ./infrastructure/dev/nginx-proxy.conf:/etc/nginx/nginx.conf
+    ports:
+      - '80:80'

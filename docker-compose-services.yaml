@@ -1,0 +1,12 @@
+version: '2.4'
+services:
+  redis:
+    image: redis:5
+    ports:
+      - '6379:6379'
+  db:
+    image: postgres:10
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./pg-data:/var/lib/postgresql/data
