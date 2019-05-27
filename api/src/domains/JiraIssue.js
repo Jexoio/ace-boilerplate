@@ -24,9 +24,8 @@ class JiraIssueDomain implements JiraIssueDomainInterface {
   }
 
   async getIssues(startAt: number, maxResults: number): Promise<Array<?JiraIssue>> {
-    const { issues } = await getBodyJson(
-      this.jiraService.get(`/rest/api/2/search?startAt=${startAt}&maxResults=${maxResults}`),
-    );
+    const response = await this.jiraService.get(`/rest/api/2/search?startAt=${startAt}&maxResults=${maxResults}`);
+    const { issues } = JSON.parse(response);
     return issues;
   }
 

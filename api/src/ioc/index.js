@@ -109,6 +109,11 @@ const getContainer = (): ContainerInterface => {
         const factoryFunction = require(path).default;
         const serviceName = name.replace(/\.js/, '');
         registerFactory(serviceName, factoryFunction);
+      } else {
+        // $FlowIgnore
+        const Service = require(path).default;
+        const serviceName = name.replace(/\.js/, '');
+        container.bind(service(serviceName)).to(Service);
       }
     });
   }

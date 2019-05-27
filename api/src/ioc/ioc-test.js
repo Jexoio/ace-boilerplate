@@ -97,6 +97,10 @@ const getTestContainer = (): ContainerInterface => {
         const factoryFunction = sandbox.stub();
         const serviceName = name.replace(/\.js/, '');
         registerFactory(serviceName, factoryFunction);
+      } else {
+        const Service = sandbox.stub();
+        const serviceName = name.replace(/\.js/, '');
+        container.bind(service(serviceName)).to(Service);
       }
     });
   }
