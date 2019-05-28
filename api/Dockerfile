@@ -13,7 +13,6 @@ WORKDIR /home/api
 ENV PATH=${PATH}:/home/api/node_modules/.bin
 COPY --from=dependencies /home/api/node_modules /home/api/node_modules
 RUN yarn add ngrok@2
-USER node
 COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 3000 4040
