@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
-import Theme from '../providers/Theme';
 import styled from 'styled-components';
+import Theme from '../providers/Theme';
 
 const UserInfoDiv = styled.div`
   margin: 10px 0;

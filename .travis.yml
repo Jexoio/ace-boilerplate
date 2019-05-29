@@ -1,0 +1,22 @@
+language: node_js
+node_js:
+  - '10'
+matrix:
+  fast_finish: true
+  include:
+    - stage: api
+      before_script:
+        - cd ${TRAVIS_BUILD_DIR}/api
+        - yarn
+      script:
+        - yarn test
+        - yarn build
+    - stage: app
+      before_script:
+        - cd ${TRAVIS_BUILD_DIR}/app
+        - yarn
+      script:
+        - yarn test
+        - yarn build
+on:
+  branch: master

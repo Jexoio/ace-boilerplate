@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import gql from 'graphql-tag';
 
 export const JIRA_ISSUE_UPDATED_SUBSCRIPTION = gql`

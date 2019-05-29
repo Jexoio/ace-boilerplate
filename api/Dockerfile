@@ -1,18 +1,16 @@
 FROM node:10 as dependencies
-WORKDIR /home/api
+WORKDIR /api
 ADD ./package.json .
 ADD ./yarn.lock .
 RUN yarn --frozen-lockfile
 
 FROM node:10
-# ngrok config
-WORKDIR /home/node/.ngrok2
-RUN touch ngrok.yml && echo 'web_addr: 0.0.0.0:4040' > ngrok.yml
-# node app config
-WORKDIR /home/api
-ENV PATH=${PATH}:/home/api/node_modules/.bin
-COPY --from=dependencies /home/api/node_modules /home/api/node_modules
-RUN yarn add ngrok@2
+# this is still buggy, ngrok tries to bind to port 4040 before it's released during hot reload
+# RUN mkdir /root/.ngrok2 && echo 'web_addr: 0.0.0.0:4040' > /root/.ngrok2/ngrok.yml
+WORKDIR /api
+COPY . .
+ENV PATH=${PATH}:/api/node_modules/.bin
+COPY --from=dependencies /api/node_modules /api/node_modules
 COPY entrypoint.sh /entrypoint.sh
 
 EXPOSE 3000 4040

@@ -1,7 +1,10 @@
 {
   "root": true,
   "parser": "babel-eslint",
-  "extends": ["airbnb-base", "plugin:flowtype/recommended"],
+  "extends": [
+    "airbnb-base",
+    "plugin:flowtype/recommended"
+  ],
   "parserOptions": {
     "ecmaVersion": 8,
     "sourceType": "module",
@@ -9,16 +12,34 @@
       "modules": true
     }
   },
-  "plugins": ["flowtype"],
+  "plugins": [
+    "flowtype"
+  ],
   "env": {
     "es6": true,
     "node": true,
     "mocha": true
   },
   "rules": {
-    "indent": ["error", 2],
-    "import/no-commonjs": ["error", 4],
-    "import/no-amd": ["error", 4],
+    "indent": [
+      "error",
+      2
+    ],
+    "quotes": [
+      "error",
+      "single",
+      {
+        "allowTemplateLiterals": true
+      }
+    ],
+    "import/no-commonjs": [
+      "error",
+      4
+    ],
+    "import/no-amd": [
+      "error",
+      4
+    ],
     "max-len": [
       "error",
       {
@@ -31,7 +52,9 @@
   },
   "overrides": [
     {
-      "files": ["*.test.js"],
+      "files": [
+        "*.test.js"
+      ],
       "rules": {
         "no-unused-expressions": 0
       }

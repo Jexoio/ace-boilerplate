@@ -1,4 +1,5 @@
 # Atlassian Add-on using Express + some sugar
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/mtmendonca/ace-boilerplate.svg?branch=master)](https://travis-ci.org/mtmendonca/ace-boilerplate)
 
 ## Tech
 - [Docker] - Run the stack in containers!
@@ -98,6 +99,7 @@ Use this class' http method wrappers to interact with Jira's api providing a cli
 |dev|Starts the stack locally according to the `AC_OPTS` config in `.env` |
 |dev-debug| same as `dev` but with node's `--inspection` enabled and listening on port 9229|
 |test|Runs automated tests|
+|cover|Runs automated tests and outputs test coverage with istambul|
 |db|Alias to `knex`|
 |db-migrate|Runs the latest migrations|
 |db-migrate-create `<migration-name>`|Creates an empty database migration on `/db/migrations`|

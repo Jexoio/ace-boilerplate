@@ -8,7 +8,7 @@ const sandbox = createSandbox();
 
 describe('JiraIssue Domain', () => {
   const jiraServiceMock = {
-    get: sandbox.stub().resolves({ body: JSON.stringify({ foo: 'bar' }) }),
+    get: sandbox.stub().resolves(JSON.stringify({ issues: [{ id: 1 }] })),
     put: sandbox.stub().resolves(true),
   };
   const underTest = new JiraIssueDomain(jiraServiceMock);

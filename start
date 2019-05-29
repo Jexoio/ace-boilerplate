@@ -8,4 +8,4 @@ cd api
 yarn
 cd ..
 
-docker-compose up --build
+docker-compose up --build ${@}

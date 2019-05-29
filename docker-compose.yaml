@@ -38,7 +38,8 @@ services:
       - '9229:9229'
       - '4040:4040'
     volumes:
-      - ./api:/home/api:cached
+      - ./api:/api:cached
+      - /api/node_modules # place an empty volume under node_modules
     entrypoint: ['./entrypoint.sh']
   nginx:
     depends_on:

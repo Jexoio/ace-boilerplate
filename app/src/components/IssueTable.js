@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import InlineEdit, { SingleLineTextInput } from '@atlaskit/inline-edit';
 import styled from 'styled-components';
@@ -57,23 +58,26 @@ const IssueRow = styled.div`
 export class Issue extends Component<IssueProps, IssueState> {
   state = {
     summary: this.props.issue.summary,
-    previousSummary: this.props.issue.summary
+    previousSummary: this.props.issue.summary,
   };
 
-  componentWillUpdate({ issue }: IssueProps, { summary }: IssueState) {
+  UNSAFE_componentWillUpdate({ issue }: IssueProps, { summary }: IssueState) {
     if (issue.summary !== summary && summary === this.state.summary) {
       this.setState({ summary: issue.summary, previousSummary: issue.summary });
     }
   }
+
   handleChange = (e: any) => {
     const summary = e.target.value;
     this.setState({ summary });
   };
-  handleConfirm = (e: any) => {
+
+  handleConfirm = () => {
     this.props.updateSummary({
-      variables: { id: this.props.issue.id, summary: this.state.summary }
+      variables: { id: this.props.issue.id, summary: this.state.summary },
     });
   };
+
   handleCancel = () => {
     this.setState({ summary: this.state.previousSummary });
   };
@@ -117,12 +121,15 @@ export class Issue extends Component<IssueProps, IssueState> {
 
 class IssuesTable extends Component<IssuesTableProps> {
   unsubscribe: Function;
+
   componentDidMount() {
     this.unsubscribe = this.props.subscribeToJiraIssueUpdate();
   }
+
   componentWillUnmount() {
     this.unsubscribe();
   }
+
   render() {
     const { issues } = this.props;
     return (

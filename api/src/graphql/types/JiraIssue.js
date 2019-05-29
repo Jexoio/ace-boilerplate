@@ -10,7 +10,6 @@ const JiraIssue = /* GraphQL */ `
 
   extend type Query {
     issues: [JiraIssue]
-    JiraIssue: JiraIssue
   }
 
   extend type Mutation {

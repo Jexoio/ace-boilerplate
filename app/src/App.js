@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable camelcase */
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-client';
 import { ApolloLink, split } from 'apollo-link';
@@ -10,9 +11,11 @@ import { ApolloProvider } from 'react-apollo';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import './App.css';
-import Theme from './providers/Theme';
+import Theme, { tokens } from './providers/Theme';
 import HelloWorld from './pages/HelloWorld';
 import Expired from './pages/Expired';
+
+const { localStorage, location } = window; // eslint-disable-line no-undef
 
 const AuthLink = (operation, next) => {
   const token = localStorage.getItem('token') || '';
@@ -21,8 +24,8 @@ const AuthLink = (operation, next) => {
     ...context,
     headers: {
       ...context.headers,
-      Authorization: `JWT ${token}`
-    }
+      Authorization: `JWT ${token}`,
+    },
   }));
 
   return next(operation);
@@ -30,25 +33,26 @@ const AuthLink = (operation, next) => {
 
 class App extends Component<any, any> {
   client: ApolloClient;
-  componentWillMount() {
-    const { protocol, host } = window.location;
+
+  UNSAFE_componentWillMount() {
+    const { protocol, host } = location;
     const wsProtocol = protocol.includes('https') ? 'wss:' : 'ws:';
 
     try {
-      const [, JWT] = (window.location.search || 'jwt=')
+      const [, JWT] = (location.search || 'jwt=')
         .match(/jwt=((?!&).)*/gi)[0]
         .split('=');
       localStorage.setItem('token', JWT);
       const httpLink = ApolloLink.from([
         AuthLink,
-        new HttpLink({ uri: `${protocol}//${host}/graphql` })
+        new HttpLink({ uri: `${protocol}//${host}/graphql` }),
       ]);
       const wsLink = new WebSocketLink({
         uri: `${wsProtocol}//${host}/subscriptions`,
         options: {
           reconnect: true,
-          connectionParams: { JWT }
-        }
+          connectionParams: { JWT },
+        },
       });
       const link = split(
         // split based on operation type
@@ -57,20 +61,21 @@ class App extends Component<any, any> {
           return kind === 'OperationDefinition' && operation === 'subscription';
         },
         wsLink,
-        httpLink
+        httpLink,
       );
       this.client = new ApolloClient({
         link,
-        cache: new InMemoryCache().restore({})
+        cache: new InMemoryCache().restore({}),
       });
     } catch (e) {
-      console.log(e);
+      console.log(e); // eslint-disable-line no-console
     }
   }
+
   render() {
     return (
       <div>
-        <Theme.Provider>
+        <Theme.Provider value={tokens}>
           <ApolloProvider client={this.client}>
             <div className="App">
               <Router>
