@@ -1,7 +1,7 @@
 // @flow
 import { helpers } from 'inversify-vanillajs-helpers';
 import 'reflect-metadata';
-import request from 'request-promise';
+import request from 'request-promise-native';
 import {
   encode, createQueryStringHash, Request, fromMethodAndUrl,
 } from 'atlassian-jwt';

@@ -1,9 +1,6 @@
-import getContainer from '../ioc';
+import createContainer from '../ioc';
 
-export default () => {
-  const container = getContainer();
-  return (req, res, next) => {
-    req.ioc = container;
-    next();
-  };
+export default (req, res, next) => {
+  req.ioc = createContainer();
+  next();
 };

@@ -8,7 +8,7 @@ import ioc from '../middleware/ioc';
 export const onConnect = async ({ JWT }: { JWT: string }, websocket: any, context: Object): Promise<WSContext> => {
   try {
     const augmentedContext: WSContext = { ...context, ioc: {}, clientKey: '' };
-    ioc()(augmentedContext, null, () => ({}));
+    ioc(augmentedContext, null, () => ({}));
     const container: ContainerInterface = augmentedContext.ioc;
     // authenticate websocket connections only when no-auth is not set
     if ((process.env.AC_OPTS || '').includes('no-auth') === false) {

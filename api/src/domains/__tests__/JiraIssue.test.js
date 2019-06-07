@@ -7,11 +7,11 @@ chai.use(sinonChai);
 const sandbox = createSandbox();
 
 describe('JiraIssue Domain', () => {
-  const jiraServiceMock = {
+  const addonServiceMock = {
     get: sandbox.stub().resolves(JSON.stringify({ issues: [{ id: 1 }] })),
     put: sandbox.stub().resolves(true),
   };
-  const underTest = new JiraIssueDomain(jiraServiceMock);
+  const underTest = new JiraIssueDomain(addonServiceMock);
   beforeEach(() => {});
 
   afterEach(() => {
@@ -20,8 +20,8 @@ describe('JiraIssue Domain', () => {
   describe('getIssues', () => {
     it('delegates to jira service', async () => {
       await underTest.getIssues(1, 10);
-      expect(jiraServiceMock.get).to.have.been.calledOnce;
-      expect(jiraServiceMock.get.getCalls()[0].args[0])
+      expect(addonServiceMock.get).to.have.been.calledOnce;
+      expect(addonServiceMock.get.getCalls()[0].args[0])
         .to.match(/startAt=1/)
         .and.match(/maxResults=10/);
     });
@@ -29,8 +29,8 @@ describe('JiraIssue Domain', () => {
   describe('udpateSummary', () => {
     it('delegates to jira service', async () => {
       await underTest.updateSummary('id-1', 'new summary');
-      expect(jiraServiceMock.put).to.have.been.calledOnce;
-      expect(jiraServiceMock.put.getCalls()[0].args[0]).to.deep.include({
+      expect(addonServiceMock.put).to.have.been.calledOnce;
+      expect(addonServiceMock.put.getCalls()[0].args[0]).to.deep.include({
         body: { fields: { summary: 'new summary' } },
       });
     });

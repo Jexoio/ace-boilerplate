@@ -67,9 +67,9 @@ This boilerplate creates a dependency injection container named `ioc` and adds i
 * `api/src/adapters` for db and redis connections: `getAdapter('adapter-file-name')`
 * `api/src/domains` for domain classes for business logic `getDomain('domain-file-name')`
 * `api/src/models` for sequelize data models `getModel('model-file-name')`
-* `api/src/services` for external integrations `getService('service-file-name')`
+* `api/src/services` for external integrations `getService('service-file-name')`.
 
-The `req` object also gets an object named `ace` which is a per-request authenticated atlas-connect-express plugin instance used by the included `JiraService` to perform api calls to the remote jira instance.
+`AddonService` is a wrapper around `ace.httpClient` defined in `api/src/factories/AddonServiceFactory.js` and it gets loaded into the IoC container in the `addon.js` middleware function, due to its per-request nature.
 
 ACE's middleware also includes a `context` object in `req` which contains [jira's context data](https://bitbucket.org/atlassian/atlassian-connect-express). In essence, the following variables are added to express' `req` object:
 ```js
@@ -83,8 +83,8 @@ ACE's middleware also includes a `context` object in `req` which contains [jira'
 `api/entrypoint.sh` runs a database migration prior to launching the stack.
 DB Migrations are created using [knex](http://knexjs.org/) and the node script `db` is an alias to it.
 
-## JiraService
-The JiraService instance you get from `req.ioc.getService('Jira')` gives you `get`, `post` and `put` methods that proxy `ace`'s httpClient methods. There are utility methods in `api/src/services/utils/jiraServiceUtils`:
+## AddonService
+The AddonService instance you get from `req.ioc.getService('Addon')` gives you `get`, `post` and `put` methods that proxy `ace`'s httpClient methods. There are utility methods in `api/src/services/utils/addonServiceUtils`:
 * `getBodyJson`: returns jira api response body as an object
 * `getResultWithoutPagination`: Paginates through jira's response until there are no more records left and returns the accumulated responses as an object
 

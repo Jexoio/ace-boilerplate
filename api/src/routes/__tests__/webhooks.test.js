@@ -24,6 +24,13 @@ describe('routes/webhooks', () => {
       req.context = {
         userAccountId: 'user-account-id',
         clientKey: 'client-key',
+        http: {
+          addon: {
+            descriptor: {
+              apiVersion: '1.0.0',
+            },
+          },
+        },
       };
       req.ace = { addon: { descriptor: { apiVersion: 1 } } };
       req.ioc = {

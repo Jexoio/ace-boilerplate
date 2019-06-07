@@ -3,7 +3,7 @@ import { ApolloServer } from 'apollo-server-express';
 import { addMockFunctionsToSchema } from 'graphql-tools';
 import schema from './graphql/schema';
 import mocks from './graphql/mocks';
-import { onConnect, onDisconnect } from './utils/subscriptionsUtils';
+import { onConnect, onDisconnect } from './utils/subscriptions';
 
 const createServer = (app) => {
   if (process.env.USE_GRAPHQL_MOCKS) {

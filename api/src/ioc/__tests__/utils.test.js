@@ -2,7 +2,7 @@ import chai, { expect } from 'chai';
 import { createSandbox } from 'sinon';
 import sinonChai from 'sinon-chai';
 import {
-  adapter, model, domain, serviceFactory, service,
+  adapter, model, domain, service,
 } from '../utils';
 
 chai.use(sinonChai);
@@ -33,13 +33,6 @@ describe('ioc/utils', () => {
     it('appends Domain to source', () => {
       const result = domain('test');
       expect(result).to.equals('testDomain');
-    });
-  });
-
-  describe('serviceFactory', () => {
-    it('appends ServiceFactory to source', () => {
-      const result = serviceFactory('test');
-      expect(result).to.equals('testServiceFactory');
     });
   });
 

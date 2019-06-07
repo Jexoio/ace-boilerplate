@@ -20,5 +20,4 @@ export const getFiles = (source: string): [Directory] => readdirSync(source)
 export const adapter = (name: string): string => `${name}Adapter`;
 export const model = (name: string): string => `${name}Model`;
 export const domain = (name: string): string => `${name}Domain`;
-export const serviceFactory = (name: string): string => `${name}ServiceFactory`;
 export const service = (name: string): string => `${name}Service`;

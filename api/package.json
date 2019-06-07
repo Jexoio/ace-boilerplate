@@ -41,7 +41,7 @@
     "pg-pool": "^2.0.6",
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "^0.13.2",
-    "request-promise": "^4.2.4",
+    "request-promise-native": "^1.0.7",
     "sequelize": "^5.8.6",
     "sleep-ms": "^2.0.1",
     "uuid": "^3.3.2"
@@ -63,7 +63,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-flowtype": "^3.9.1",
     "eslint-plugin-import": "^2.17.2",
-    "flow-bin": "^0.98.1",
+    "flow-bin": "^0.100.0",
     "flow-typed": "^2.5.2",
     "graphql-cli": "^3.0.11",
     "knex": "^0.16.5",
