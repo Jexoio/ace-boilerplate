@@ -84,7 +84,7 @@ ACE's middleware also includes a `context` object in `req` which contains [jira'
 DB Migrations are created using [knex](http://knexjs.org/) and the node script `db` is an alias to it.
 
 ## AddonService
-The AddonService instance you get from `req.ioc.getService('Addon')` gives you `get`, `post` and `put` methods that proxy `ace`'s httpClient methods. There are utility methods in `api/src/services/utils/addonServiceUtils`:
+The AddonService instance you get from `req.ioc.getService('Addon')` gives you `get`, `post`, `put` and `delete` methods that proxy `ace`'s httpClient methods. There are utility methods in `api/src/utils/addonServiceUtils`:
 * `getBodyJson`: returns jira api response body as an object
 * `getResultWithoutPagination`: Paginates through jira's response until there are no more records left and returns the accumulated responses as an object
 
