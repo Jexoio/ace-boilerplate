@@ -3,7 +3,7 @@ import { createSandbox } from 'sinon';
 import sinonChai from 'sinon-chai';
 import chaiAsPromised from 'chai-as-promised';
 import { decode } from 'atlassian-jwt';
-import request from 'request-promise';
+import request from 'request-promise-native';
 import AddonSettings from '../../domains/AddonSettings';
 import JiraClient from '../JiraClient';
 

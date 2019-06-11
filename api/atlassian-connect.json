@@ -18,7 +18,12 @@
   "lifecycle": {
     "installed": "/installed"
   },
-  "scopes": ["READ", "WRITE", "ADMIN", "ACT_AS_USER"],
+  "scopes": [
+    "READ",
+    "WRITE",
+    "ADMIN",
+    "ACT_AS_USER"
+  ],
   "modules": {
     "generalPages": [
       {

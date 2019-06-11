@@ -1,9 +1,8 @@
 // @flow
 import { helpers } from 'inversify-vanillajs-helpers';
 import 'reflect-metadata';
-import type { JiraServiceInterface as JiraService } from '../types';
+import type { AddonServiceInterface as AddonService } from '../types';
 import { service } from '../ioc/utils';
-import { getBodyJson } from '../services/utils/jiraServiceUtils';
 
 export type JiraIssue = {
   id: string,
@@ -17,26 +16,25 @@ export interface JiraIssueDomainInterface {
 }
 
 class JiraIssueDomain implements JiraIssueDomainInterface {
-  jiraService: JiraService;
+  addonService: AddonService;
 
-  constructor(jiraService: JiraService) {
-    this.jiraService = jiraService;
+  constructor(addonService: AddonService) {
+    this.addonService = addonService;
   }
 
   async getIssues(startAt: number, maxResults: number): Promise<Array<?JiraIssue>> {
-    const response = await this.jiraService.get(`/rest/api/2/search?startAt=${startAt}&maxResults=${maxResults}`);
-    const { issues } = JSON.parse(response);
+    const { issues } = await this.addonService.get(`/rest/api/3/search?startAt=${startAt}&maxResults=${maxResults}`);
     return issues;
   }
 
   updateSummary(id: string, summary: string): Promise<JiraIssue> {
-    return this.jiraService.put({
+    return this.addonService.put({
       url: `/rest/api/2/issue/${id}`,
       body: { fields: { summary } },
       json: true,
     });
   }
 }
-helpers.annotate(JiraIssueDomain, [service('Jira')]);
+helpers.annotate(JiraIssueDomain, [service('Addon')]);
 
 export default JiraIssueDomain;

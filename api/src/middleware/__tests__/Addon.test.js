@@ -1,19 +1,20 @@
 import chai, { expect } from 'chai';
 import { createSandbox } from 'sinon';
 import sinonChai from 'sinon-chai';
-import middleware from '../jiraService';
+import middleware from '../addon';
+import * as factory from '../../factories/AddonServiceFactory';
 
 chai.use(sinonChai);
 const sandbox = createSandbox();
 
-describe('JiraService Middleware', () => {
-  let getServiceFactoryStub;
+describe('AddonService Middleware', () => {
   let toConstantValueStub;
+  let createAddonServiceStub;
   let nextStub;
+  let addonStub;
 
   const req = {
     ioc: {
-      getServiceFactory: () => getServiceFactoryStub,
       rebindIfBound: () => ({ toConstantValue: toConstantValueStub }),
     },
     context: {
@@ -22,7 +23,8 @@ describe('JiraService Middleware', () => {
   };
 
   beforeEach(() => {
-    getServiceFactoryStub = sandbox.stub().returns();
+    addonStub = { httpClient: sandbox.stub().returns({}) };
+    createAddonServiceStub = sandbox.stub(factory, 'default').returns();
     toConstantValueStub = sandbox.stub();
     nextStub = sandbox.stub();
   });
@@ -34,15 +36,16 @@ describe('JiraService Middleware', () => {
   describe('default', () => {
     it('creates a new object from factory when req.context.clientKey is present', () => {
       req.context.clientKey = 'foo-bar';
-      middleware(req, null, nextStub);
-      expect(getServiceFactoryStub).to.have.been.calledOnce;
+      middleware(addonStub)(req, null, nextStub);
+      expect(createAddonServiceStub).to.have.been.calledOnce;
       expect(toConstantValueStub).to.have.been.calledOnce;
     });
 
     it('does not create a new object from factory when req.context.clientKey is absent', () => {
       req.context.clientKey = null;
       middleware(req, null, nextStub);
-      expect(getServiceFactoryStub).not.to.have.been.called;
+      expect(createAddonServiceStub).not.to.have.been.calledOnce;
+      expect(toConstantValueStub).not.to.have.been.calledOnce;
     });
   });
 });

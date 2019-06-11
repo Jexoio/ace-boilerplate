@@ -1,5 +1,5 @@
 // @flow
-import type { JiraApiResponse } from '../../types';
+import type { JiraApiResponse } from '../types';
 
 /**
  * Returns the body of jira's response data as JSON

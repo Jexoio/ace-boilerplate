@@ -9,10 +9,15 @@ import type { Interface as AddonSettingsInterface } from '../domains/AddonSettin
 export const enabled = (
   {
     ioc,
-    context: { clientKey, userAccountId },
-    ace: {
-      addon: {
-        descriptor: { apiVersion },
+    context: {
+      clientKey,
+      userAccountId,
+      http: {
+        addon: {
+          descriptor: {
+            apiVersion,
+          },
+        },
       },
     },
   }: ACERequest<{}>,
@@ -26,10 +31,15 @@ export const enabled = (
 export const disabled = (
   {
     ioc,
-    context: { clientKey, userAccountId },
-    ace: {
-      addon: {
-        descriptor: { apiVersion },
+    context: {
+      clientKey,
+      userAccountId,
+      http: {
+        addon: {
+          descriptor: {
+            apiVersion,
+          },
+        },
       },
     },
   }: ACERequest<{}>,

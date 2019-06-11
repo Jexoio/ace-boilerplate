@@ -2,13 +2,13 @@ import chai, { expect } from 'chai';
 import { createSandbox } from 'sinon';
 import sinonChai from 'sinon-chai';
 import chaiAsPromised from 'chai-as-promised';
-import { getBodyJson, getResultWithoutPagination } from '../utils/jiraServiceUtils';
+import { getBodyJson, getResultWithoutPagination } from '../addonService';
 
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
 const sandbox = createSandbox();
 
-describe('services/utils/jiraServiceUtils', () => {
+describe('services/utils/addonServiceUtils', () => {
   let resolverFn;
   beforeEach(() => {
     resolverFn = sandbox.stub().resolves({

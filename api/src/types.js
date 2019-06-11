@@ -2,14 +2,18 @@
 import type { $Response, $Request, NextFunction as $NextFunction } from 'express';
 import type { ContainerInterface } from './ioc';
 
-export type ACE = {
-  authenticate: () => (req: $Request, res: $Response, next: $NextFunction) => void,
-  httpClient: Function,
-  addon: { descriptor: { apiVersion: number } },
-  asUserByAccountId: (userAccountId: string) => Function,
+export type ACEHttp = {
   get: Function,
   put: Function,
   post: Function,
+  del: Function,
+  asUserByAccountId: (userAccountId: string) => Function,
+}
+
+export type ACE = {
+  authenticate: () => (req: $Request, res: $Response, next: $NextFunction) => void,
+  httpClient: () => ACEHttp,
+  addon: { descriptor: { apiVersion: number } },
 };
 
 export interface SequelizeModel<T> {
@@ -41,13 +45,19 @@ export type ACEContext = {
   context: string,
   clientKey: string,
   userAccountId: string,
+  http: {
+    addon: {
+      descriptor: {
+        apiVersion: number,
+      };
+    }
+  }
 };
 
 type StringMap = { [key: string]: string };
 export type ACERequest<T> = {
   ioc: ContainerInterface,
   context: ACEContext,
-  ace: ACE,
   query: StringMap,
   body?: T,
 };
@@ -61,8 +71,8 @@ export type SubscriptionVariables = {
   clientKey: string,
 };
 
-export interface JiraServiceInterface {
-  _ace: ACE;
+export interface AddonServiceInterface {
+  _http: ACEHttp;
   get(input: string | Object): Function;
   put(input: string | Object): Function;
   post(input: string | Object): Function;

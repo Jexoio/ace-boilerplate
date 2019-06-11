@@ -1,10 +1,11 @@
+// @flow
+
 import helmet from 'helmet';
 import cors from 'cors';
 import ioc from './ioc';
 import addon from './addon';
-import jiraService from './jiraService';
 
-export default (app, ace) => {
+export default (app: any, ace: any): void => {
   app.use(
     cors({
       origin: '*',
@@ -34,7 +35,6 @@ export default (app, ace) => {
     }),
   );
   app.use(/^(?!\/(atlassian-connect\.json|installed).*)/, ace.checkValidToken());
-  app.use(ioc());
+  app.use(ioc);
   app.use(addon(ace));
-  app.use(jiraService);
 };
