@@ -29,7 +29,7 @@ class JiraIssueDomain implements JiraIssueDomainInterface {
 
   updateSummary(id: string, summary: string): Promise<JiraIssue> {
     return this.addonService.put({
-      url: `/rest/api/2/issue/${id}`,
+      url: `/rest/api/3/issue/${id}`,
       body: { fields: { summary } },
       json: true,
     });

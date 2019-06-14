@@ -1,5 +1,5 @@
 // @flow
-/* eslint-disable no-console,global-require,import/no-dynamic-require */
+/* eslint-disable global-require,import/no-dynamic-require */
 import { join } from 'path';
 import { Container } from 'inversify';
 import { helpers } from 'inversify-vanillajs-helpers';
@@ -64,7 +64,6 @@ export default (): ContainerInterface => {
   const registerFactory = helpers.registerFactory(container);
 
   // load adapters
-  console.log('Loading adapters:', adapters);
   adapters.forEach(({ name, path }) => {
     // $FlowIgnore
     const adapterValue = require(path).default;
@@ -73,7 +72,6 @@ export default (): ContainerInterface => {
 
   // load models
   const loadedModels: SequelizeModelMap<any> = {};
-  console.log('Loading models:', models);
   models.forEach(({ name, path }) => {
     // $FlowIgnore
     const factoryFunction = require(path).default;
@@ -88,14 +86,11 @@ export default (): ContainerInterface => {
     // $FlowFixMe https://github.com/facebook/flow/issues/2221
     if (typeof loadedModel.associate === 'function') {
       // $FlowFixMe
-      console.log('Loading associations for:', loadedModel.name);
-      // $FlowFixMe
       loadedModel.associate(loadedModels);
     }
   });
 
   // load domains
-  console.log('Loading domains:', domains);
   domains.forEach(({ name, path }) => {
     // $FlowIgnore
     const Domain = require(path).default;
@@ -104,7 +99,6 @@ export default (): ContainerInterface => {
   });
 
   // load services
-  console.log('Loading services:', services);
   services.forEach(({ name, path }) => {
     // $FlowIgnore
     const Service = require(path).default;

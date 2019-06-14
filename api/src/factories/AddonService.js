@@ -26,15 +26,15 @@ export default class AddonService implements AddonServiceInterface {
   }
 
   async put(...args: any): Promise<JiraApiResponse> {
-    return getBodyJson(this._put(...args));
+    return this._put(...args);
   }
 
   async post(...args: any): Promise<JiraApiResponse> {
     return getBodyJson(this._post(...args));
   }
 
-  async _del(...args: any): Promise<JiraApiResponse> {
-    return getBodyJson(this._del(...args));
+  async del(...args: any): Promise<JiraApiResponse> {
+    return this._del(...args);
   }
 
   constructor(http: ACEHttp) {

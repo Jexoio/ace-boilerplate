@@ -25,14 +25,14 @@ $ npm install -g yarn
 ```
 Create a copy of `.env.sample` as `.env`
 Create a copy of `api/credentials.json.sample` as `credentials.json`
-Edit credentials.json:
+Edit credentials.json. To get an API Token follow [these instructions](https://confluence.atlassian.com/cloud/api-tokens-938839638.html)
 ```json
 {
     "hosts": {
         "<YOUR JIRA INSTANCE ENDPOINT>": {
             "product": "jira",
-            "username": "<YOUR JIRA USERNAME>",
-            "password": "<YOUR JIRA PASSWORD>"
+            "username": "<YOUR EMAIL>",
+            "password": "<YOUR API TOKEN>"
         }
     }
 }
