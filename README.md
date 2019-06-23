@@ -5,7 +5,7 @@
 - [Docker] - Run the stack in containers!
 - [docker-compose] - Basic Docker orchestrator
 - [Postgresql] - Database
-- [Redis] - Database
+- [Redis] - Cache
 - [Expressjs] - Nodejs web framework
 - [Flow] - Static Type Checker for JavaScript
 - [ACE] - Atlassian Express library
@@ -51,7 +51,7 @@ The script above will
 
 Use ACE's `AC_OPTS` environment variable on `.env` to control ACE's behaviour.
 With the current value of `AC_OPTS=force-reg,force-dereg` an Ngrok tunnel will be created and used as your application's enpoint during development.
-Use `AC_OPTS=no-auth` to start the stack locally, skipping authentication and mocking graphql queries and mutations.
+Use `AC_OPTS=no-auth` to start the stack locally, skipping authentication,  and `USE_GRAPHQL_MOCKS=true` to mock graphql queries and mutations.
 
 This repo comes with a sample [create-react-app](https://github.com/facebook/create-react-app) application that shows some user info and lists the first 10 jira issues from your configured instance.
 
