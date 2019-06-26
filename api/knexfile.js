@@ -1,4 +1,9 @@
 /* eslint-disable */
+
+if(process.env.CREATE_MIGRATION){
+  require('dotenv').config({ path: '../.env' })
+}
+
 module.exports = {
     development: {
         client: process.env.DB_DIALECT,

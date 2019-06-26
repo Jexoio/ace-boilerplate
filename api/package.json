@@ -10,8 +10,8 @@
     "prod": "node dist/src/app.js",
     "cover": "nyc --check-coverage npm run test",
     "db": "knex",
-    "db-migrate": "sleep 30 && yarn db migrate:latest",
-    "db-migrate-create": "yarn db migrate:make",
+    "migrate": "sleep 30 && yarn db migrate:latest",
+    "create-migration": "CREATE_MIGRATION=true yarn db migrate:make",
     "lint": "eslint ."
   },
   "engines": {
@@ -59,6 +59,7 @@
     "babel-eslint": "^10.0.1",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-flowtype": "^3.9.1",
