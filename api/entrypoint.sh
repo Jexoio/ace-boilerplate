@@ -1,5 +1,5 @@
 #!/bin/sh
 set -e
 
-yarn db-migrate
+yarn migrate
 yarn dev-debug
