@@ -5,10 +5,10 @@ import { model } from '../ioc/utils';
 import type { Interface as UserModel, User } from '../models/User';
 
 export interface Interface {
-  create(user: User): Function;
-  findAll(where: Object): Function;
-  findById(id: string): Function;
-  findOne(where: Object): Function;
+  create(user: User): Promise<UserModel>;
+  findAll(where: Object): Promise<Array<?UserModel>>;
+  findById(id: string): Promise<?UserModel>;
+  findOne(where: Object): Promise<?UserModel>;
   update: Function;
 }
 
