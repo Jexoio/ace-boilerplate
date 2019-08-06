@@ -18,7 +18,7 @@
     "maxTokenAge": "31536000",
     "whitelist": [
       "*.jira-dev.com",
-      "*.atlassian.net",
+      "vcosta.atlassian.net",
       "*.atlassian.com",
       "*.jira.com"
     ]

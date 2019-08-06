@@ -1,22 +1,14 @@
 // @flow
 /* eslint-disable camelcase */
 import React, { Component } from 'react';
-import { Query, graphql, compose } from 'react-apollo';
+import { Query } from 'react-apollo';
 import Page, { Grid, GridColumn } from '@atlaskit/page';
 
 import UserInfo from '../components/UserInfo';
-import IssueTable from '../components/IssueTable';
-import { ME_QUERY, JIRA_ISSUES_QUERY } from '../graphql/queries';
-import { JIRA_ISSUE_UPDATE_SUMMARY } from '../graphql/mutations';
-import { JIRA_ISSUE_UPDATED_SUBSCRIPTION } from '../graphql/subscriptions';
+import { ME_QUERY } from '../graphql/queries';
 
 const { localStorage, location, atob } = window; // eslint-disable-line no-undef
 
-const withUpdateSummary = graphql(JIRA_ISSUE_UPDATE_SUMMARY, {
-  name: 'updateSummary',
-});
-
-const ComposedIssuesTable = compose(withUpdateSummary)(IssueTable);
 class HelloWorld extends Component<any, any> {
   clientKey: string;
 
@@ -28,7 +20,6 @@ class HelloWorld extends Component<any, any> {
   }
 
   render() {
-    const { clientKey } = this;
     return (
       <div>
         <Page>
@@ -43,26 +34,6 @@ class HelloWorld extends Component<any, any> {
                     if (error) return <p>Error :(</p>;
                     const { me } = data;
                     return <UserInfo me={me} />;
-                  }}
-                </Query>
-                <Query query={JIRA_ISSUES_QUERY}>
-                  {({
-                    loading, error, data, subscribeToMore,
-                  }) => {
-                    if (loading) return <p>Loading...</p>;
-                    if (error) return <p>Error :(</p>;
-                    const { issues } = data;
-                    return (
-                      <ComposedIssuesTable
-                        issues={issues}
-                        subscribeToJiraIssueUpdate={() => {
-                          subscribeToMore({
-                            document: JIRA_ISSUE_UPDATED_SUBSCRIPTION,
-                            variables: { clientKey },
-                          });
-                        }}
-                      />
-                    );
                   }}
                 </Query>
               </div>

@@ -1,11 +1,11 @@
 {
-  "key": "my-super-awesome-add-on",
-  "name": "My Super Awesome Add On",
-  "description": "My very first add-on",
+  "key": "my-awesome-app",
+  "name": "My Awesome App",
+  "description": "My Awesome App",
   "apiVersion": 1,
   "vendor": {
-    "name": "Jexo",
-    "url": "https://jexo.io"
+    "name": "Sweet stuff",
+    "url": ""
   },
   "baseUrl": "{{localBaseUrl}}",
   "links": {
@@ -30,7 +30,7 @@
         "key": "hello-world-page-jira",
         "location": "system.top.navigation.bar",
         "name": {
-          "value": "My Awesome Plugin"
+          "value": "App"
         },
         "url": "/hello-world",
         "conditions": [
@@ -43,7 +43,7 @@
         "key": "expired-page-jira",
         "location": "system.top.navigation.bar",
         "name": {
-          "value": "My Awesome Plugin Expired"
+          "value": "App Expired"
         },
         "url": "/expired",
         "conditions": [

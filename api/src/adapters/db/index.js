@@ -21,6 +21,7 @@ export default new Sequelize(process.env.DATABASE_URL, {
   dialect: process.env.DB_DIALECT,
   define: {
     underscored: true,
+    paranoid: true,
     freezeTableName: false,
     charset: process.env.DB_CHARSET || 'utf8',
     dialectOptions: {

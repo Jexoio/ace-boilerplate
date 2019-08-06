@@ -17,19 +17,21 @@ export type ACE = {
 };
 
 export interface SequelizeModel<T> {
-  id: ?string;
-  associate: ?Function;
+  id: string;
+  associate: Function;
   name: string;
   findOne(where: { where: Object }): Promise<?(SequelizeModel<T> & T)>;
-  findById(id: string | number): Promise<?(SequelizeModel<T> & T)>;
+  findByPk(id: string | number): Promise<?(SequelizeModel<T> & T)>;
   findOrCreate(object: T): Promise<SequelizeModel<T> & T>;
   findAll(where: { where: Object }): Promise<Array<?(SequelizeModel<T> & T)>>;
-  create(model: T): Promise<SequelizeModel<T> & T>;
+  create(model: Object): Promise<SequelizeModel<T> & T>;
+  upsert(model: Object): Promise<boolean>;
   update(values: Object): Promise<SequelizeModel<T>> & T;
-  delete(object: SequelizeModel<T>, config: Object): Promise<any>;
+  destroy(object: Object, config: Object): Promise<any>;
   hasOne(model: SequelizeModel<any>, config: Object): void;
   hasMany(model: SequelizeModel<any>, config: Object): void;
   belongsTo(model: SequelizeModel<any>, config: Object): void;
+  addScope(name: string, params: Object, config: Object): void;
   save(): Promise<SequelizeModel<T> & T>;
 }
 
@@ -73,9 +75,11 @@ export type SubscriptionVariables = {
 
 export interface AddonServiceInterface {
   _http: ACEHttp;
-  get(input: string | Object): Function;
-  put(input: string | Object): Function;
-  post(input: string | Object): Function;
+  get(input: string | Object): Promise<any | Array<?any>>;
+  put(input: string | Object): Promise<any>;
+  post(input: string | Object): Promise<any>;
+  delete(input: string | Object): Promise<any>;
+  getUnpaginated(input: string | Object): Promise<any | Array<?any>>;
 }
 
 export type JiraApiResponse = {

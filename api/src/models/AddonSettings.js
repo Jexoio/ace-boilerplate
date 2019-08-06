@@ -2,7 +2,7 @@
 import Sequelize from 'sequelize';
 import { interfaces } from 'inversify';
 import type { SequelizeModel } from '../types';
-import type { User as UserType } from './User';
+import type { Interface as UserType } from './User';
 
 export type AddonSettings = {
   id?: string,

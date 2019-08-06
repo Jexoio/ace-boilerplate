@@ -54,5 +54,14 @@
     "no-underscore-dangle": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn"
-  }
+  },
+  "overrides": [
+    {
+        "files": ["**/*.stories.js"],
+        "rules": {
+            "import/no-extraneous-dependencies": "off",
+            "no-console": "off"
+        }
+    }
+]
 }

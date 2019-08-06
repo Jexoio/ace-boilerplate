@@ -27,9 +27,9 @@ const createServer = (app) => {
       onConnect,
       onDisconnect,
     },
-    formatError: (err) => {
-      console.log('%j', err);
-      return new Error('There was an error');
+    formatError: (error) => {
+      console.log('%j', error);
+      return error;
     },
   });
 

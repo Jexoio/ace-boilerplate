@@ -3,7 +3,7 @@ import Sequelize from 'sequelize';
 import { interfaces } from 'inversify';
 import type { SequelizeModel } from '../types';
 
-export type User = {
+type User = {
   id?: string,
   userAccountId: string,
   clientKey: string,

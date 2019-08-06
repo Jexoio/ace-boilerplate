@@ -70,14 +70,4 @@ describe('routes/webhooks', () => {
       }));
   });
 
-  describe('issue-updated', () => {
-    it('triggers subscription update', () => request(app)
-      .post('/issue-updated')
-      .send({ issue: { id: 'issue-id' } })
-      .expect(200)
-      .expect(() => {
-        expect(pubsubStub.publish).to.have.been.calledOnce;
-        expect(pubsubStub.publish).to.have.been.calledWithMatch('jira-issue-updated', { id: 'issue-id' });
-      }));
-  });
 });

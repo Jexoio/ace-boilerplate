@@ -6,7 +6,7 @@ import AddonService from '../AddonService';
 chai.use(sinonChai);
 const sandbox = createSandbox();
 
-describe('JiraIssue Domain', () => {
+describe('AddonService', () => {
   const response = { body: JSON.stringify({ foo: 'bar' }) };
   const httpMock = {
     get: (args, cb) => cb(null, response),
@@ -21,7 +21,7 @@ describe('JiraIssue Domain', () => {
     sandbox.restore();
   });
 
-  describe('getIssues', () => {
+  describe('http methods', () => {
     it('parses response body', async () => {
       const getResponse = await underTest.get('/nowhere');
       const putResponse = await underTest.get('/nowhere');

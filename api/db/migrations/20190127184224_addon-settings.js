@@ -1,6 +1,8 @@
+/* eslint-disable import/no-commonjs */
 exports.up = knex => knex.schema.createTable('AddonSettings', (table) => {
   table.timestamp('createdAt', { useTz: true });
   table.timestamp('updatedAt', { useTz: true });
+  table.timestamp('deletedAt', { useTz: true });
   table.increments('id').primary();
   table.string('clientKey', 255);
   table.string('key', 255);

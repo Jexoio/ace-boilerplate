@@ -101,8 +101,8 @@ Use this class' http method wrappers to interact with Jira's api providing a cli
 |test|Runs automated tests|
 |cover|Runs automated tests and outputs test coverage with istambul|
 |db|Alias to `knex`|
-|migrate|Runs the latest migrations|
-|create-migration `<migration-name>`|Creates an empty database migration on `/db/migrations`|
+|db-migrate|Runs the latest migrations|
+|db-migrate-create `<migration-name>`|Creates an empty database migration on `/db/migrations`|
 |build|Creates production build in `api/dist/`|
 |prod|Starts production build  by running `node api/dist/src/app.js`|
 

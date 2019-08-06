@@ -8,6 +8,14 @@ import {
 import type { Interface as AddonSettings } from '../domains/AddonSettings';
 import { domain } from '../ioc/utils';
 
+export interface Interface {
+  getToken(method: string, path: string, iss: string, sharedSecret: string): Promise<string>;
+  get(path: string, clientKey: string): Promise<any>;
+  post(path: string, clientKey: string, body: Object): Promise<any>;
+  put(path: string, clientKey: string, body: Object): Promise<any>;
+  delete(path: string, clientKey: string, body: Object): Promise<any>;
+}
+
 /**
  * Jira api client wrapper to be used outside an instance's http request lifecyle.
  * Use this class' http method wrappers to interact with Jira's api providing a clientKey
@@ -15,7 +23,7 @@ import { domain } from '../ioc/utils';
  *
  * @class JiraClient
  */
-class JiraClient {
+class JiraClient implements Interface {
   addonSettings: AddonSettings;
 
   constructor(addonSettings: AddonSettings) {

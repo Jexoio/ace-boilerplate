@@ -7,8 +7,7 @@ export default (ace: any) => (req: ACERequest<{}>, res: Object, next: Function):
   const { ioc } = req;
   // context.clientKey is not available during installation requests
   if (req.context.clientKey) {
-    const addonService = createAddonService(ace.httpClient(req));
-    ioc.rebindIfBound(service('Addon')).toConstantValue(addonService);
+    ioc.rebindIfBound(service('Addon')).toDynamicValue(() => createAddonService(ace.httpClient(req)));
   }
   next();
 };

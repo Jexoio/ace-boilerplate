@@ -61,7 +61,7 @@ describe('routes/jira-modules', () => {
       .get('/')
       .expect(200)
       .expect(({ text }) => {
-        expect(text).to.match(/"key":"my-super-awesome-add-on","name":"My Super Awesome Add On"/);
+        expect(text).to.match(/"key":"my-awesome-app","name":"My Awesome App"/);
       }));
   });
 
