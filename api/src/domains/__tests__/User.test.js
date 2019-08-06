@@ -9,7 +9,7 @@ const sandbox = createSandbox();
 describe('User Domain', () => {
   const userModelMock = {
     findAll: sandbox.stub().resolves([{ id: 1 }]),
-    findById: sandbox.stub().resolves({ id: 1 }),
+    findByPk: sandbox.stub().resolves({ id: 1 }),
     create: sandbox.stub().resolves({ id: 1 }),
     findOne: sandbox.stub().resolves({ id: 1 }),
   };
@@ -27,10 +27,10 @@ describe('User Domain', () => {
     });
   });
 
-  describe('findById', () => {
+  describe('findByPk', () => {
     it('delegates to model', async () => {
-      await underTest.findById();
-      expect(userModelMock.findById).to.have.been.calledOnce;
+      await underTest.findByPk();
+      expect(userModelMock.findByPk).to.have.been.calledOnce;
     });
   });
 

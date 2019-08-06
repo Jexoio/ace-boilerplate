@@ -1,10 +1,10 @@
-FROM node:10 as dependencies
+FROM node:12 as dependencies
 WORKDIR /api
 ADD ./package.json .
 ADD ./yarn.lock .
 RUN yarn --frozen-lockfile
 
-FROM node:10
+FROM node:12
 # this is still buggy, ngrok tries to bind to port 4040 before it's released during hot reload
 # RUN mkdir /root/.ngrok2 && echo 'web_addr: 0.0.0.0:4040' > /root/.ngrok2/ngrok.yml
 WORKDIR /api

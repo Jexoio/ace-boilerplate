@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import ApolloClient from 'apollo-client';
 import { ApolloLink, split } from 'apollo-link';
-import { HttpLink } from 'apollo-link-http';
+import { BatchHttpLink } from 'apollo-link-batch-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { WebSocketLink } from 'apollo-link-ws';
 import { getMainDefinition } from 'apollo-utilities';
@@ -45,7 +45,7 @@ class App extends Component<any, any> {
       localStorage.setItem('token', JWT);
       const httpLink = ApolloLink.from([
         AuthLink,
-        new HttpLink({ uri: `${protocol}//${host}/graphql` }),
+        new BatchHttpLink({ uri: `${protocol}//${host}/graphql` }),
       ]);
       const wsLink = new WebSocketLink({
         uri: `${wsProtocol}//${host}/subscriptions`,

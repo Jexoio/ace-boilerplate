@@ -1,7 +1,10 @@
 // @flow
 import { promisify } from 'util';
-import { getBodyJson } from '../utils/addonService';
+import { get } from 'lodash';
+import { getBodyJson, getResultWithoutPagination } from '../utils/addonService';
 import type { AddonServiceInterface, JiraApiResponse, ACEHttp } from '../types';
+
+export type Interface = AddonServiceInterface;
 
 /**
  * Wrapper around Jira's HTTP Client
@@ -25,15 +28,26 @@ export default class AddonService implements AddonServiceInterface {
     return getBodyJson(this._get(...args));
   }
 
+  async getUnpaginated(...args: any): Promise<any> {
+    return getResultWithoutPagination(this._get, ...args);
+  }
+
   async put(...args: any): Promise<JiraApiResponse> {
     return this._put(...args);
   }
 
   async post(...args: any): Promise<JiraApiResponse> {
-    return getBodyJson(this._post(...args));
+    const response = await this._post(...args);
+
+    const errorMessage = get(response, 'body.errors.name');
+    if (errorMessage) {
+      throw new Error(errorMessage);
+    }
+
+    return response.body;
   }
 
-  async del(...args: any): Promise<JiraApiResponse> {
+  async delete(...args: any): Promise<JiraApiResponse> {
     return this._del(...args);
   }
 

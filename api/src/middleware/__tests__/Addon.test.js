@@ -8,14 +8,13 @@ chai.use(sinonChai);
 const sandbox = createSandbox();
 
 describe('AddonService Middleware', () => {
-  let toConstantValueStub;
-  let createAddonServiceStub;
+  let toDynamicValueStub;
   let nextStub;
   let addonStub;
 
   const req = {
     ioc: {
-      rebindIfBound: () => ({ toConstantValue: toConstantValueStub }),
+      rebindIfBound: () => ({ toDynamicValue: toDynamicValueStub }),
     },
     context: {
       clientKey: null,
@@ -24,8 +23,7 @@ describe('AddonService Middleware', () => {
 
   beforeEach(() => {
     addonStub = { httpClient: sandbox.stub().returns({}) };
-    createAddonServiceStub = sandbox.stub(factory, 'default').returns();
-    toConstantValueStub = sandbox.stub();
+    toDynamicValueStub = sandbox.stub();
     nextStub = sandbox.stub();
   });
 
@@ -37,15 +35,13 @@ describe('AddonService Middleware', () => {
     it('creates a new object from factory when req.context.clientKey is present', () => {
       req.context.clientKey = 'foo-bar';
       middleware(addonStub)(req, null, nextStub);
-      expect(createAddonServiceStub).to.have.been.calledOnce;
-      expect(toConstantValueStub).to.have.been.calledOnce;
+      expect(toDynamicValueStub).to.have.been.calledOnce;
     });
 
     it('does not create a new object from factory when req.context.clientKey is absent', () => {
       req.context.clientKey = null;
       middleware(req, null, nextStub);
-      expect(createAddonServiceStub).not.to.have.been.calledOnce;
-      expect(toConstantValueStub).not.to.have.been.calledOnce;
+      expect(toDynamicValueStub).not.to.have.been.calledOnce;
     });
   });
 });

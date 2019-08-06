@@ -2,14 +2,14 @@
 import { helpers } from 'inversify-vanillajs-helpers';
 import 'reflect-metadata';
 import { model } from '../ioc/utils';
-import type { Interface as UserModel, User } from '../models/User';
+import type { Interface as UserModel } from '../models/User';
 
 export interface Interface {
-  create(user: User): Promise<UserModel>;
-  findAll(where: Object): Promise<Array<?UserModel>>;
-  findById(id: string): Promise<?UserModel>;
-  findOne(where: Object): Promise<?UserModel>;
-  update: Function;
+  create(user: Object): Promise<Object>;
+  findAll(where: Object): Promise<Object>;
+  findByPk(id: string): Promise<Object>;
+  findOne(where: Object): Promise<Object>;
+  update: (user: Object) => Promise<Object>;
 }
 
 class UserDomain implements Interface {
@@ -19,7 +19,7 @@ class UserDomain implements Interface {
     this.userModel = userModel;
   }
 
-  create(user: User): Promise<UserModel> {
+  create(user: Object): Promise<UserModel> {
     return this.userModel.create(user);
   }
 
@@ -27,8 +27,8 @@ class UserDomain implements Interface {
     return this.userModel.findAll({ where });
   }
 
-  findById(id: string): Promise<?UserModel> {
-    return this.userModel.findById(id);
+  findByPk(id: string): Promise<?UserModel> {
+    return this.userModel.findByPk(id);
   }
 
   findOne(where: Object): Promise<?UserModel> {

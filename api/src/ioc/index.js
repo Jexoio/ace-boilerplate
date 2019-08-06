@@ -85,7 +85,6 @@ export default (): ContainerInterface => {
   Object.values(loadedModels).forEach((loadedModel) => {
     // $FlowFixMe https://github.com/facebook/flow/issues/2221
     if (typeof loadedModel.associate === 'function') {
-      // $FlowFixMe
       loadedModel.associate(loadedModels);
     }
   });

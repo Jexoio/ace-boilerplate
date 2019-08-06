@@ -15,7 +15,7 @@ export const getBodyJson = async (promise: Promise<JiraApiResponse>): Promise<an
 export const getResultWithoutPagination = async (
   fn: (path: string) => Promise<JiraApiResponse>,
   path: string,
-  resultIdentifier: string,
+  resultIdentifier: string = 'values',
   startAt: number = 0,
   maxResults: number = 100,
 ): Promise<Array<any>> => {
@@ -31,5 +31,6 @@ export const getResultWithoutPagination = async (
     currentStartAt += maxResults;
     result = [...result, ...records];
   }
+
   return result;
 };
