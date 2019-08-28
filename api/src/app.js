@@ -26,7 +26,7 @@ addMiddleware(app, ace);
 // add routes defined in ./routes. Pass addon for authentication and jira api requests
 addRoutes(app, ace);
 // create graphql server
-const server = createServer(app, ace);
+const server = createServer(app);
 const httpServer = http.createServer(app);
 server.installSubscriptionHandlers(httpServer);
 // start the server
