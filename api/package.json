@@ -43,7 +43,7 @@
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "^0.13.2",
     "request-promise-native": "^1.0.7",
-    "sequelize": "^5.8.6",
+    "sequelize": "^5.15.1",
     "sleep-ms": "^2.0.1",
     "uuid": "^3.3.2"
   },
