@@ -35,13 +35,15 @@
           return decodeURIComponent(codedParam);
         };
 
-        var baseUrl = getUrlParam('xdm_e') + getUrlParam('cp');
         var options = document
           .getElementById('connect-loader')
           .getAttribute('data-options');
 
         var script = document.createElement('script');
-        script.src = baseUrl + '/atlassian-connect/all.js';
+        script.src = 'https://connect-cdn.atl-paas.net/all.js';
+        script.onerror = function() {
+          console.error('Failed to load '+ this.src);
+        };
 
         if (options) {
           script.setAttribute('data-options', options);
