@@ -67,7 +67,7 @@
     "eslint-plugin-import": "^2.17.2",
     "flow-bin": "^0.100.0",
     "graphql-cli": "^3.0.11",
-    "knex": "^0.19.5",
+    "knex": "^2.4.0",
     "mocha": "^6.1.4",
     "ngrok": "^3.2.4",
     "nodemon": "^1.19.0",
